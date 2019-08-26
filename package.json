@@ -1,10 +1,10 @@
 {
   "name": "grid-system-with-container-query",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start:dev": "webpack-dev-server --config webpack.dev.js --open",
+    "start:dev": "webpack --config webpack.dev.js --watch",
     "build": "webpack --config webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,16 +1,23 @@
 const path = require('path');
 const common = require('./webpack.common');
 const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = merge(common, {
-  entry: "./src/GridSystem.js",
-  mode: "development",
-  devtool: 'source-map',
+  entry: {
+    GridSystem: "./src/GridSystem.js"
+  },
   output: {
     filename: "GridSystem.js",
     path: path.resolve(__dirname, 'dist'),
+    library: '[name]',
+    libraryTarget: 'umd',
   },
+  mode: 'production',
+  devtool: 'source-map',
+  plugins: [
+    new CleanWebpackPlugin()
+  ],
   module: {
     rules: [
       {
@@ -19,9 +26,4 @@ module.exports = merge(common, {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html"
-    })
-  ],
 });

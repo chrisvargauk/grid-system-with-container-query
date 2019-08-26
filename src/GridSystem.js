@@ -44,22 +44,36 @@ class GridSystem {
   createIndex() {
     const indexed = {};
 
-    // Use any breakpoint that the Dev defines to extract the breakpoints
-    const someBreakpointName = Object.keys(this.config.listBreakpoint)[0];
+    if (!(this.config.listBreakpoint instanceof Array)) {
+      // Use any breakpoint that the Dev defines to extract the breakpoints
+      const someBreakpointName = Object.keys(this.config.listBreakpoint)[0];
 
-    const someBreakpoint = this.config.listBreakpoint[ someBreakpointName ];
-    indexed.listColName = Object.keys(someBreakpoint);
-    indexed.listBreakpointWidth = Object.keys(this.config.listBreakpoint)
-      .map(item => parseInt(item))
-      .filter(item => !isNaN(item))
-      .sort((a, b) => b - a);
+      const someBreakpoint = this.config.listBreakpoint[ someBreakpointName ];
+      indexed.listColName = Object.keys(someBreakpoint);
+      indexed.listBreakpointWidth = Object.keys(this.config.listBreakpoint)
+        .map(item => parseInt(item))
+        .filter(item => !isNaN(item))
+        .sort((a, b) => b - a);
+
+      indexed.isActiveGrid = true;
+    } else {
+      indexed.listColName = this.config.listBreakpoint;
+      indexed.listBreakpointWidth = this.config.listBreakpoint
+        .map(item => parseInt(item))
+        .filter(item => !isNaN(item))
+        .sort((a, b) => b - a);
+
+      indexed.isActiveGrid = false;
+    }
 
     return indexed;
   }
 
   hook() {
-    this.listCol = this.hookCol();
     this.listCont = document.querySelectorAll(".cont");
+
+    if (!this.indexed.isActiveGrid) return;
+    this.listCol = this.hookCol();
   }
 
   hookCol() {
@@ -83,6 +97,17 @@ class GridSystem {
   }
 
   handlerResize() {
+    // Resize Containers
+    for (let indexListCont = 0; indexListCont < this.listCont.length; indexListCont++) {
+      const cont = this.listCont[ indexListCont ];
+      const widthParent = this.util.screen.getWidthDomElement( cont.parentElement );
+      const breakpoint = this.getMatchingBreakpoint( widthParent);
+
+      cont.setAttribute('breakpoint', breakpoint.width);
+    }
+
+    if (!this.indexed.isActiveGrid) return;
+
     // Resize Cols in Grid
     for (let indexListCol = 0; indexListCol < this.listCol.length; indexListCol++) {
       const col = this.listCol[ indexListCol ];
@@ -92,15 +117,6 @@ class GridSystem {
       const breakpoint = this.getMatchingBreakpoint( widthParent);
 
       dCol.style.width = breakpoint.listObjCol[col.type]+'%';
-    }
-
-    // Resize Containers
-    for (let indexListCont = 0; indexListCont < this.listCont.length; indexListCont++) {
-      const cont = this.listCont[ indexListCont ];
-      const widthParent = this.util.screen.getWidthDomElement( cont.parentElement );
-      const breakpoint = this.getMatchingBreakpoint( widthParent);
-
-      cont.setAttribute('breakpoint', breakpoint.width);
     }
   }
 

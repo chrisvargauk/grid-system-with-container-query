@@ -44,6 +44,12 @@ Then use the defined breakpoints in your HTML accordingly.
 ### Containers
 You can add the class "cont" to any UI Element to get relevant breakpoint set on the UI Element itself.
 
+```javascript
+import GridSystem from 'grid-system-with-container-query';
+
+const gridSystem = new GridSystem(['default', 600, 400]);
+```
+
 Add class "cont" to any DOM Element
 ```html
 <div class="cont">...</div>
