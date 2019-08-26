@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Container Example</title>
+  <style>
+    .cont {
+      background: coral;
+      padding: 1em;
+    }
+  </style>
+  <script src="../dist/GridSystem.js"></script>
+</head>
+<body>
+  <div style="width: 50%">
+    <div class="cont">
+      "breakpoint" attribute on this Container is reporting the correct breakpoints according to
+      Parent DOM Element with, which is 50% of Viewport Width.
+    </div>
+  </div>
+
+  <script>
+    window.gridSystem = new GridSystem.default({
+      default: {
+        'col-4-4': 100,
+      },
+
+      600: {
+        'col-4-4': 100,
+      },
+
+      400: {
+        'col-4-4': 100,
+      },
+    });
+  </script>
+</body>
+</html>

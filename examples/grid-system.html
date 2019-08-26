@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Example / Grid System</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    [class*='col-'] {
+      border: 1px solid black;
+    }
+  </style>
+  <script src="../dist/GridSystem.js"></script>
+</head>
+<body>
+
+  <div class="grid">
+    <div class="col-4-4">
+      4-4
+    </div>
+    <div class="col-2-4">
+      2-4
+    </div>
+    <div class="col-2-4">
+      2-4
+    </div>
+    <div class="col-1-4">
+      1-4
+    </div>
+    <div class="col-1-4">
+      1-4
+    </div>
+    <div class="col-1-4">
+      1-4
+    </div>
+    <div class="col-1-4">
+      1-4
+    </div>
+  </div>
+
+  <script>
+    window.gridSystem = new GridSystem.default({
+      default: {
+        'col-4-4': 100,
+        'col-3-4': 75,
+        'col-2-4': 50,
+        'col-1-4': 25,
+      },
+
+      600: {
+        'col-4-4': 100,
+        'col-3-4': 100,
+        'col-2-4': 50,
+        'col-1-4': 50,
+      },
+
+      400: {
+        'col-4-4': 100,
+        'col-3-4': 100,
+        'col-2-4': 100,
+        'col-1-4': 100,
+      },
+    });
+  </script>
+</body>
+</html>
