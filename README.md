@@ -54,7 +54,7 @@ Add class "cont" to any DOM Element
 ```html
 <div class="cont">...</div>
 ```
-That dome element will have correct breakpoint attribute set whenever the view gets resized.
+That DOM Element will have correct breakpoint attribute set whenever the view gets resized.
 ```html
 <div class="cont" breakpoint="default"></div>
 or
