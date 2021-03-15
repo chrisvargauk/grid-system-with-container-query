@@ -9,7 +9,8 @@ export function getWidth() {
 
   const widthDesktop = Math.max(document.documentElement.clientWidth, window.innerWidth);
 
-  return widthDesktop / window.devicePixelRatio;
+  // return widthDesktop / window.devicePixelRatio;
+  return widthDesktop;
 }
 
 export function getWidthDomElement( dElement ) {
@@ -22,7 +23,8 @@ export function getWidthDomElement( dElement ) {
 
   const widthDesktop = Math.max(dElement.clientWidth, dElement.offsetWidth);
 
-  return widthDesktop / window.devicePixelRatio;
+  // return widthDesktop / window.devicePixelRatio;
+  return widthDesktop;
 }
 
 export const screen = {
